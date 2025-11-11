@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Törtkaland – Szabadulószoba</title>
+<style>
+    body {
+        font-family: "Comic Sans MS", sans-serif;
+        background: linear-gradient(to bottom right, #e0f7fa, #e1bee7);
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+    .room {
+        display: none;
+        padding: 30px;
+    }
+    .active {
+        display: block;
+    }
+    h1, h2 {
+        color: #4a148c;
+    }
+    input[type="text"] {
+        padding: 8px;
+        font-size: 1.1em;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 100px;
+        text-align: center;
+    }
+    button {
+        background-color: #6a1b9a;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1em;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+    button:hover {
+        background-color: #4a148c;
+    }
+    #success {
+        background-color: #c8e6c9;
+        color: #1b5e20;
+        padding: 10px;
+        border-radius: 5px;
+        display: none;
+        width: 60%;
+        margin: 20px auto;
+    }
+</style>
+</head>
+<body>
+
+<h1>🏰 TÖRTKALAND – A MÁGIKUS KASTÉLY</h1>
+<p>Oldd meg a törtes feladatokat, hogy kinyíljon a következő ajtó! ✨</p>
+
+<div id="success">✅ Helyes válasz! Az ajtó kinyílt...</div>
+
+<!-- 1. terem -->
+<div class="room active" id="room1">
+    <h2>🔹 1. terem – A Számok Fala</h2>
+    <p><b>Feladat:</b> Számítsd ki és egyszerűsíts, ha lehet!</p>
+    <p>1/4 + 2/4 = ?</p>
+    <input type="text" id="answer1" placeholder="pl. 3/4">
+    <br>
+    <button onclick="checkAnswer(1, '3/4')">Ellenőrzés</button>
+</div>
+
+<!-- 2. terem -->
+<div class="room" id="room2">
+    <h2>🔹 2. terem – A Rejtett Ajtó</h2>
+    <p>3/5 - 1/10 = ?</p>
+    <input type="text" id="answer2" placeholder="pl. 1/2">
+    <br>
+    <button onclick="checkAnswer(2, '1/2')">Ellenőrzés</button>
+</div>
+
+<!-- 3. terem -->
+<div class="room" id="room3">
+    <h2>🔹 3. terem – A Szorzás Tornya</h2>
+    <p>2/3 × 3/4 = ?</p>
+    <input type="text" id="answer3" placeholder="pl. 1/2">
+    <br>
+    <button onclick="checkAnswer(3, '1/2')">Ellenőrzés</button>
+</div>
+
+<!-- 4. terem -->
+<div class="room" id="room4">
+    <h2>🔹 4. terem – Az Osztás Kapuja</h2>
+    <p>1/2 ÷ 1/4 = ?</p>
+    <input type="text" id="answer4" placeholder="pl. 2">
+    <br>
+    <button onclick="checkAnswer(4, '2')">Ellenőrzés</button>
+</div>
+
+<!-- 5. terem -->
+<div class="room" id="room5">
+    <h2>🔹 5. terem – A Végső Próba</h2>
+    <p>(1/2 + 3/8) - 1/4 = ?</p>
+    <input type="text" id="answer5" placeholder="pl. 5/8">
+    <br>
+    <button onclick="checkAnswer(5, '5/8')">Ellenőrzés</button>
+</div>
+
+<!-- Vég -->
+<div class="room" id="room6">
+    <h2>🎉 Gratulálok, kiszabadultál a Törtkastélyból! 🎉</h2>
+    <p>Ügyesen megoldottad az összes feladatot!</p>
+    <p>💡 Tipp: próbáld újra a barátaiddal, és nézzétek meg, ki végez gyorsabban!</p>
+</div>
+
+<script>
+function checkAnswer(roomNumber, correctAnswer) {
+    const input = document.getElementById("answer" + roomNumber).value.trim().replace(/\s+/g, "");
+    const feedback = document.getElementById("success");
+    if (input === correctAnswer) {
+        feedback.style.display = "block";
+        setTimeout(() => {
+            feedback.style.display = "none";
+            document.getElementById("room" + roomNumber).classList.remove("active");
+            document.getElementById("room" + (roomNumber + 1)).classList.add("active");
+        }, 1000);
+    } else {
+        alert("❌ Ez még nem jó, próbáld újra!");
+    }
+}
+</script>
+
+</body>
+</html>
